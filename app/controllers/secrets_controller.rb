@@ -13,11 +13,11 @@ class SecretsController < ApplicationController
 
     def show
         
-         if !!current_user
-            redirect_to 'sessions#new'
+         if current_user
+            render :show
 
          else
-            render 'show'
+            redirect_to '/login'
          end
         
         
@@ -29,7 +29,7 @@ class SecretsController < ApplicationController
 
     def require_login
     
-        redirect_to '/login' unless session.include? :name
+        return head(:forbidden) unless session.include? :name
 
     end
 end
