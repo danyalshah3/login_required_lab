@@ -13,8 +13,13 @@ class SecretsController < ApplicationController
 
     def show
         
-         @secret = Secret.find(params[:id])
-         redirect_to '/login'
+         if !!current_user
+            redirect_to 'sessions#new'
+
+         else
+            render 
+         end
+        
         
 
     end
@@ -24,7 +29,7 @@ class SecretsController < ApplicationController
 
     def require_login
     
-        return head(:forbidden) unless session.include? :user_id 
+        redirect_to '/login' unless session.include? :name
 
     end
 end
