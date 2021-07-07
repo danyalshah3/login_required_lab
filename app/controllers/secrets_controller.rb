@@ -12,7 +12,9 @@ class SecretsController < ApplicationController
    end
 
     def show
+        
          @secret = Secret.find(params[:id])
+         redirect_to '/login'
         
 
     end
